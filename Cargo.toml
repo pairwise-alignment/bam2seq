@@ -1,0 +1,18 @@
+[package]
+name = "bam2seq"
+version = "0.1.0"
+edition = "2021"
+authors = ["Ragnar Groot Koerkamp"]
+description = "Extract reads and reconstructed references from a .bam file using CIGAR and MD tags."
+repository = "https://github.com/RagnarGrootKoerkamp/bam2seq"
+license = "MPL-2.0"
+keywords = ["bioinformatics", "cli", "bam", "sam"]
+readme = "README.org"
+categories = ["science"]
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bam = "*"
+clap = {version="3.*", features=["derive", "wrap_help"]}

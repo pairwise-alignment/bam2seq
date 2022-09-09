@@ -1,0 +1,20 @@
+#+title: Bam2Seq
+
+This tool takes a ~.bam~ file containing CIGAR strings, reads, and ~MD~ tags,
+and outputs a ~.seq~ file containing pairs of reads and reconstructed references.
+
+** Installation
+
+Simply clone the repository.
+#+begin_src
+git clone https://github.com/ragnargrootkoerkamp/bam2seq.git
+#+end_src
+
+** Usage
+#+begin_src
+cargo run --release -- <input.bam> <output.seq> [--clip] [--min-len <len>]
+#+end_src
+
+- ~--clip~ :: If the CIGAR string contains ~<count>S~ at the start/end,
+  remove the first/last ~<count>~ characters from the read.
+- ~--min_len <len>~ :: Only output (clipped) reads of at least this length.
