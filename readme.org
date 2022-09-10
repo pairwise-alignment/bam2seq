@@ -18,3 +18,8 @@ cargo run --release -- <input.bam> <output.seq> [--clip] [--min-len <len>]
 - ~--clip~ :: If the CIGAR string contains ~<count>S~ at the start/end,
   remove the first/last ~<count>~ characters from the read.
 - ~--min_len <len>~ :: Only output (clipped) reads of at least this length.
+
+** Links
+
+- This is quite similar to [[https://github.com/mlafave/sam2pairwise][sam2pairwise]] but writes a simpler output format.
+- All the work in the implementation is done by the [[https://docs.rs/bam/latest/bam/][BAM]] crate.
