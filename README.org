@@ -1,9 +1,17 @@
 #+title: Bam2Seq
 
+[[https://crates.io/crates/bam2seq][https://img.shields.io/crates/v/bam2seq.svg]]
+[[https://crates.io/crates/bam2seq][https://img.shields.io/crates/d/bam2seq.svg]]
+
 This tool takes a BAM file containing CIGAR strings, reads, and ~MD~ tags,
 and outputs a ~.seq~ file containing pairs of reads and reconstructed references.
 
 ** Installation
+
+Install directly with cargo from [[https://crates.io/crates/bam2seq][crates.io]]:
+#+begin_src
+cargo install bam2seq
+#+end_src
 
 Simply clone the repository, and optionally install the binary.
 #+begin_src
