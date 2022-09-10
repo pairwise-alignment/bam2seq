@@ -22,11 +22,12 @@ cargo install --path .
 
 ** Usage
 #+begin_src
-cargo run --release -- <input.bam> <output.seq> [--clip] [--min-len <len>]
+cargo run --release -- <input.bam> [<output.seq>] [--no-clip] [--min-len <len>]
 #+end_src
 
-- ~--clip~ :: If the CIGAR string contains ~<count>S~ at the start/end,
-  remove the first/last ~<count>~ characters from the read.
+- ~input.bam~ :: The input BAM file.
+- ~output.seq~ :: The output ~.seq~ file. Defaults to ~input.seq~.
+- ~--no-clip~ :: Disable trimming of soft clipped regions from the read.
 - ~--min-len <len>~ :: Only output (clipped) reads of at least this length.
 
 This outputs a ~.seq~ file, which looks like this:

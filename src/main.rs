@@ -15,13 +15,13 @@ struct Cli {
     #[clap(parse(from_os_str))]
     input: PathBuf,
 
-    /// Output .seq file.
+    /// Output .seq file. Defaults to <input>.seq.
     #[clap(parse(from_os_str))]
-    output: PathBuf,
+    output: Option<PathBuf>,
 
-    /// Remove soft clipped regions from the read.
+    /// Disable trimming of soft clipped regions from the read.
     #[clap(long)]
-    clip: bool,
+    no_clip: bool,
 
     /// Only output reads at least this long.
     #[clap(long)]
@@ -36,18 +36,20 @@ fn main() {
         Some(OsStr::new("bam")),
         "Input file must have .bam extension!"
     );
-    assert_eq!(
-        args.output.extension(),
-        Some(OsStr::new("seq")),
-        "Output file must have .seq extension!"
-    );
+    if let Some(output) = &args.output {
+        assert_eq!(
+            output.extension(),
+            Some(OsStr::new("seq")),
+            "Output file must have .seq extension!"
+        );
+    }
 
     let mut output = BufWriter::new(
         std::fs::File::options()
             .write(true)
             .create(true)
             .truncate(true)
-            .open(args.output)
+            .open(args.output.unwrap_or(args.input.with_extension("seq")))
             .unwrap(),
     );
 
@@ -71,7 +73,7 @@ fn main() {
 
         if let Some(l) = args.min_len {
             let mut len = record.query_len();
-            if args.clip {
+            if !args.no_clip {
                 len -= record.cigar().soft_clipping(true);
                 len -= record.cigar().soft_clipping(false);
             }
@@ -94,7 +96,7 @@ fn main() {
 
         let read = record.sequence().to_vec();
         let mut read = &read[..];
-        if args.clip {
+        if !args.no_clip {
             let left_clip = record.cigar().soft_clipping(true) as usize;
             let right_clip = record.cigar().soft_clipping(false) as usize;
             read = &read[left_clip..read.len() - right_clip];
