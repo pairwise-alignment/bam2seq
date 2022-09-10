@@ -1,5 +1,3 @@
-#![feature(let_else)]
-
 use bam;
 use clap::Parser;
 use std::{
@@ -84,7 +82,9 @@ fn main() {
         }
 
         let mut reference = Vec::new();
-        let Ok(alignment_entries) = record.alignment_entries() else {
+        let alignment_entries = if let Ok(entries) = record.alignment_entries() {
+            entries
+        } else {
             skipped += 1;
             continue;
         };
