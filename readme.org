@@ -17,7 +17,7 @@ cargo run --release -- <input.bam> <output.seq> [--clip] [--min-len <len>]
 
 - ~--clip~ :: If the CIGAR string contains ~<count>S~ at the start/end,
   remove the first/last ~<count>~ characters from the read.
-- ~--min_len <len>~ :: Only output (clipped) reads of at least this length.
+- ~--min-len <len>~ :: Only output (clipped) reads of at least this length.
 
 This outputs a ~.seq~ file, which looks like this:
 #+begin_src
