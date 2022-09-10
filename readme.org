@@ -5,9 +5,11 @@ and outputs a ~.seq~ file containing pairs of reads and reconstructed references
 
 ** Installation
 
-Simply clone the repository.
+Simply clone the repository, and optionally install the binary.
 #+begin_src
 git clone https://github.com/ragnargrootkoerkamp/bam2seq.git
+cd bam2seq
+cargo install --path .
 #+end_src
 
 ** Usage
