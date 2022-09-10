@@ -1,6 +1,6 @@
 [package]
 name = "bam2seq"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Ragnar Groot Koerkamp"]
 description = "Extract reads and reconstructed references from a .bam file using CIGAR and MD tags."
