@@ -93,12 +93,11 @@ fn main() {
         }
 
         let read = record.sequence().to_vec();
-        let mut read = read.as_slice();
+        let mut read = &read[..];
         if args.clip {
-            read = read.split_at(record.cigar().soft_clipping(true) as usize).1;
-            read = read
-                .split_at(read.len() - record.cigar().soft_clipping(false) as usize)
-                .0;
+            let left_clip = record.cigar().soft_clipping(true) as usize;
+            let right_clip = record.cigar().soft_clipping(false) as usize;
+            read = &read[left_clip..read.len() - right_clip];
         }
 
         taken += 1;
