@@ -51,7 +51,7 @@ fn main() {
             .unwrap(),
     );
 
-    let reader = bam::BamReader::from_path(args.input, 4).unwrap();
+    let reader = bam::BamReader::from_path(args.input, 12).unwrap();
     let mut taken = 0;
     let mut skipped = 0;
     let mut total_len = 0;
